@@ -1,0 +1,110 @@
+#!/usr/bin/env python
+import sys
+import warnings
+
+from datetime import datetime
+
+from debate.crew import MyProjectCr
+
+def print_model_trace(crew):
+    print("=== Model trace ===")
+    for agent in crew.agents:
+        provider = getattr(agent.llm, "provider", None)
+        model = getattr(agent.llm, "model", None)
+        role = getattr(agent, "role", "<unknown>")
+        print(f"- {role}: {provider}/{model}")
+    print("===================")
+
+warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
+
+
+# This main file is intended to be a way for you to run your
+# crew locally, so refrain from adding unnecessary logic into this file.
+# Replace with inputs you want to test with, it will automatically
+# interpolate any tasks and agents information
+
+def default_inputs(topic: str) -> dict:
+    return {
+        "topic": topic,
+        "current_year": str(datetime.now().year),
+    }
+
+
+def run():
+    """
+    Run the crew.
+    """
+    inputs = default_inputs('AI and LLMs are useless and have no real world applications')
+
+    try:
+        crew = MyProjectCr().crew()
+        print_model_trace(crew)
+        result = crew.kickoff(inputs=inputs)
+        print(result)
+    except Exception as e:
+        raise Exception(f"An error occurred while running the crew: {e}")
+
+
+def train():
+    """
+    Train the crew for a given number of iterations.
+    """
+    inputs = default_inputs('AI and LLMs are useless and have no real world applications')
+    try:
+        crew = MyProjectCr().crew()
+        print_model_trace(crew)
+        crew.train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
+
+    except Exception as e:
+        raise Exception(f"An error occurred while training the crew: {e}")
+
+def replay():
+    """
+    Replay the crew execution from a specific task.
+    """
+    try:
+        MyProjectCr().crew().replay(task_id=sys.argv[1])
+
+    except Exception as e:
+        raise Exception(f"An error occurred while replaying the crew: {e}")
+
+def test():
+    """
+    Test the crew execution and returns the results.
+    """
+    inputs = default_inputs('AI and LLMs are useless and have no real world applications')
+
+    try:
+        crew = MyProjectCr().crew()
+        print_model_trace(crew)
+        crew.test(n_iterations=int(sys.argv[1]), eval_llm=sys.argv[2], inputs=inputs)
+
+    except Exception as e:
+        raise Exception(f"An error occurred while testing the crew: {e}")
+
+def run_with_trigger():
+    """
+    Run the crew with trigger payload.
+    """
+    import json
+
+    if len(sys.argv) < 2:
+        raise Exception("No trigger payload provided. Please provide JSON payload as argument.")
+
+    try:
+        trigger_payload = json.loads(sys.argv[1])
+    except json.JSONDecodeError:
+        raise Exception("Invalid JSON payload provided as argument")
+
+    inputs = {
+        "crewai_trigger_payload": trigger_payload,
+        **default_inputs('AI and LLMs are useless and have no real world applications'),
+    }
+
+    try:
+        crew = MyProjectCr().crew()
+        print_model_trace(crew)
+        result = crew.kickoff(inputs=inputs)
+        return result
+    except Exception as e:
+        raise Exception(f"An error occurred while running the crew with trigger: {e}")
