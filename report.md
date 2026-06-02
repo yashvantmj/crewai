@@ -1,0 +1,21 @@
+The side **against the motion** is more convincing.
+
+The motion claims that **AI and LLMs are useless and have no real-world applications**. That is an extremely broad and absolute claim, and the opposition successfully shows that it is not sustainable. Even if AI and LLMs are imperfect, risky, and in need of oversight, that does not prove they are useless or that they lack real-world applications.
+
+The argument in favor of the motion raises serious and legitimate concerns. It correctly points out that LLMs can hallucinate, produce false information confidently, lack genuine understanding, require human supervision, and create accountability problems. It also rightly notes that AI can be misused for misinformation, scams, deepfakes, plagiarism, spam, and other harmful purposes. These are strong criticisms of overreliance on AI, especially in high-stakes areas such as medicine, law, hiring, finance, and education.
+
+However, those arguments do not fully prove the motion. They show that AI and LLMs are **limited**, **fallible**, and sometimes **dangerous when misused**. They do not show that they are **useless** or that they have **no real-world applications**.
+
+The opposition makes the stronger case by distinguishing between **imperfection** and **uselessness**. Many useful tools require supervision and can produce errors if used badly. Spreadsheets can contain wrong formulas. GPS systems can give bad routes. Search engines can return unreliable information. Medical tests can produce false positives or false negatives. Autopilot systems require human pilots. Yet none of these tools are considered useless simply because they need oversight.
+
+The opposition also provides many concrete examples of real-world AI applications: medical imaging, fraud detection, logistics, translation, accessibility tools, coding assistance, customer support, education, cybersecurity, manufacturing, agriculture, climate modeling, and scientific research. These examples directly refute the claim that AI has “no real-world applications.” The existence of even some meaningful applications is enough to defeat such an absolute motion.
+
+The proposition’s strongest point is that LLMs should not be trusted blindly. But the opposition answers this effectively: human oversight does not make a tool useless. In many real-world contexts, tools are valuable precisely because they assist humans rather than replace them. If an LLM helps draft, summarize, translate, brainstorm, code, or organize information faster, then it has practical utility even if a human must review the result.
+
+The proposition also argues that LLMs lack genuine understanding. But the opposition persuasively responds that usefulness does not require consciousness or human-like understanding. A calculator does not understand mathematics. A dishwasher does not understand cleanliness. A spell-checker does not understand literature. Yet all can be useful because they perform practical functions. The same reasoning applies to AI systems: they do not need to “understand” in a philosophical sense to provide real assistance.
+
+On accountability, the proposition again raises a valid concern, but the opposition is more convincing in framing it as a governance issue rather than proof of uselessness. Many powerful technologies require regulation, standards, and responsibility structures. That does not mean they have no value. It means they need to be managed carefully.
+
+Overall, the proposition successfully argues that AI and LLMs are **not perfect**, **not fully trustworthy**, and **not substitutes for human expertise**. But the motion goes much further than that. It says they are **useless** and have **no real-world applications**. The opposition convincingly shows that this is false.
+
+Therefore, the side **against the motion** wins. AI and LLMs have serious limitations and risks, but they are not useless. They already have real-world applications, and their value lies not in replacing human judgment, but in assisting, accelerating, and extending it when used responsibly.
