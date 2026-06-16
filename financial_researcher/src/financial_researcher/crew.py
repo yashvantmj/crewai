@@ -2,6 +2,14 @@ from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Load .env from root directory (/workspaces/crewai/.env)
+env_path = Path(__file__).parent.parent.parent.parent / '.env'
+load_dotenv(env_path)
+
 try:
     from crewai_tools import SerperDevTool
 except ImportError:

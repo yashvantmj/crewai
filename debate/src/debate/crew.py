@@ -1,6 +1,15 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
+
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Load .env from root directory (/workspaces/crewai/.env)
+env_path = Path(__file__).parent.parent.parent.parent / '.env'
+load_dotenv(env_path)
+
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators

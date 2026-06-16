@@ -3,10 +3,30 @@ from crewai.project import CrewBase, agent, crew, task
 from pydantic import BaseModel, Field
 from typing import List
 
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+from crewai.memory import Memory
+
+
+# Load .env from root directory (/workspaces/crewai/.env)
+env_path = Path(__file__).parent.parent.parent.parent / '.env'
+load_dotenv(env_path)
+
+# Verify it loaded
+if not os.getenv('OPENAI_API_KEY'):
+    raise ValueError("❌ OPENAI_API_KEY not found in .env file!")
+else:
+    print("✓ API Key loaded successfully")
+
 try:
     from crewai_tools import SerperDevTool
 except ImportError:
     SerperDevTool = None
+
+from .tools.push_tool import PushNotificationTool
+
 
 class TrendingCompany(BaseModel):
     """ A company that is in the news and attracting attention """
@@ -40,15 +60,19 @@ class StockPicker():
 
     @agent
     def trending_company_finder(self) -> Agent:
-        return Agent(config=self.agents_config['trending_company_finder'], tools=[SerperDevTool()] if SerperDevTool else [])
+        return Agent(config=self.agents_config['trending_company_finder'], 
+                     tools=[SerperDevTool()] if SerperDevTool else [],memory =True)
+        
 
     @agent
     def financial_researcher(self) -> Agent:
-        return Agent(config=self.agents_config['financial_researcher'], tools=[SerperDevTool()] if SerperDevTool else [])
+        return Agent(config=self.agents_config['financial_researcher'], 
+                     tools=[SerperDevTool()] if SerperDevTool else [])
 
     @agent
     def stock_picker(self) -> Agent:
-        return Agent(config=self.agents_config['stock_picker'])
+        return Agent(config=self.agents_config['stock_picker'],
+                     tools=[PushNotificationTool()],memory =True)
 
     @task
     def find_trending_companies(self) -> Task:
@@ -65,12 +89,20 @@ class StockPicker():
     @crew
     def crew(self):
         """Creates the StockPicker crew"""
-        manager = Agent(config=self.agents_config['manager'])
+        manager = Agent(
+            config=self.agents_config['manager'],
+            allow_delegation=True)
         
+        memory_backend = Memory(
+            storage='lancedb',
+            root_scope='stock_picker',
+        )
+
         return Crew(
             agents=self.agents,
             tasks=self.tasks,
             process=Process.hierarchical,
             verbose=True,
-            manager_agent=manager
+            manager_agent=manager,
+            memory=memory_backend,
         )
