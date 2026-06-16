@@ -1,0 +1,9 @@
+coding_task:
+  description: 
+    "Write a Python code to achieve the following assignment: {assignment}"
+  expected_output: 
+    "The python code in a text file named 'solution.py' that solves the assignment."
+  agent:
+    coder
+  output_file:
+    output/solution.py
